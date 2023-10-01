@@ -1,17 +1,23 @@
 {
     "manifest_version": 3,
-    "name": "Media Object Detection",
+    "name": "Object Search",
     "version": "1.0",
     "description": "Detect items in the video and inform them of the sales site",
     "permissions": [
       "activeTab",
       "storage",
       "scripting",
-      "downloads"
+      "downloads",
+      "windows"
     ],
     "background": {
       "service_worker": "background.js"
     },
+    "content_scripts": [ {
+      "js": [ "page.js" ],
+      "matches": [ "https://www.youtube.com/*" ],
+      "run_at": "document_end"
+   } ],
     "action": {
       "default_popup": "popup.html",
       "default_icon": {
