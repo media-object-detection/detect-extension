@@ -26,6 +26,15 @@ getEnvFile()
           sendResponse(envVariables);
           return true;
         }
+
+        if (request.action === "openPopup") {
+          chrome.windows.create({
+              url: 'popup2.html',
+              type: 'popup',
+              width: 400,
+              height: 400,
+          });
+        }  
       }
     );
   });
