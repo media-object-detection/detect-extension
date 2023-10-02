@@ -28,7 +28,24 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
                 croppedContext.drawImage(canvas, startX, startY, croppedCanvas.width, croppedCanvas.height, 0, 0, croppedCanvas.width, croppedCanvas.height);
               
                 const croppedDataURL = croppedCanvas.toDataURL('image/png');
-              
+                
+                const formData = new FormData();
+                formData.append('image', croppedDataURL);
+                console.log('crop', croppedDataURL)
+                console.log('form',formData)
+
+                fetch('http://127.0.0.1:5000/search', {
+                    method: 'POST',
+                    body: formData,
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('response: ' + JSON.stringify(data));
+                })
+                .catch(error => {
+                    console.error('error: ' + error);
+                });
+                
                 const a = document.createElement('a');
                 a.href = croppedDataURL;
                 a.download = `object_${index}.png`;
