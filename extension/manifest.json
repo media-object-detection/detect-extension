@@ -3,18 +3,26 @@
   "name": "Object Search",
   "version": "1.0",
   "description": "Detect items in the video and inform them of the sales site",
-  "permissions": ["activeTab", "storage", "scripting", "downloads", "windows"],
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting",
+    "downloads",
+    "windows",
+    "tabs"
+  ],
   "background": {
     "service_worker": "background.js"
   },
   "content_scripts": [
     {
       "js": ["page.js"],
-      "matches": ["https://www.youtube.com/*"],
+      "matches": ["<all_urls>"],
       "run_at": "document_end"
     }
   ],
   "action": {
+    "default_popup": "popup.html",
     "default_icon": {
       "16": "icons/icon16.png",
       "48": "icons/icon48.png",

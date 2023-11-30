@@ -10,7 +10,6 @@ function CaptureItem() {
   ) {
     if (request.action === 'popupClosed') {
       popupOpened = false;
-      console.log('close~~', popupOpened);
     }
   });
 
@@ -19,6 +18,19 @@ function CaptureItem() {
     alert('No video element found');
     return;
   }
+
+  chrome.runtime.onMessage.addListener(function (
+    message,
+    sender,
+    sendResponse
+  ) {
+    if (message.action === 'capturedImage') {
+      var screenshotArea = document.getElementById('screenshotArea');
+      var img = new Image();
+      img.src = message.dataUrl;
+      screenshotArea.appendChild(img);
+    }
+  });
 
   const canvas = document.createElement('canvas');
   canvas.width = video.videoWidth;
@@ -49,6 +61,10 @@ function CaptureItem() {
                   type: 'OBJECT_LOCALIZATION',
                   maxResults: 5,
                 },
+                {
+                  type: 'TEXT_DETECTION',
+                  maxResults: 5,
+                },
               ],
             },
           ],
@@ -56,18 +72,15 @@ function CaptureItem() {
       })
         .then((response) => response.json())
         .then((data) => {
-          if (
-            data.responses &&
-            data.responses[0] &&
-            data.responses[0].localizedObjectAnnotations
-          ) {
+          if (data.responses && data.responses[0]) {
             const detectList = data.responses[0].localizedObjectAnnotations;
+            const textList = data.response[0].textAnnotations;
 
-            // popup으로 데이터를 전송
+            // popup2로 데이터를 전송
             chrome.runtime.sendMessage(
-              { data: { detectList, dataURL } },
+              { data: { detectList, textList, dataURL } },
               function (response) {
-                console.log('popup.js: success');
+                console.log('popup2.js: success');
               }
             );
           }
