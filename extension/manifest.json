@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Object Search",
+  "name": "Image Edit System",
   "version": "1.0",
   "description": "Detect items in the video and inform them of the sales site",
   "permissions": [
