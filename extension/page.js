@@ -33,10 +33,10 @@ function CaptureItem() {
   });
 
   const canvas = document.createElement('canvas');
-  canvas.width = video.videoWidth;
-  canvas.height = video.videoHeight;
+  canvas.width = screenshotArea.screenshotAreaWidth;
+  canvas.height = screenshotArea.screenshotAreaHeight;
   const context = canvas.getContext('2d');
-  context.drawImage(video, 0, 0, canvas.width, canvas.height);
+  context.drawImage(screenshotArea, 0, 0, canvas.width, canvas.height);
 
   const dataURL = canvas.toDataURL('image/png').split(',')[1];
 
