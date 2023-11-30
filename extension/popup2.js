@@ -1,7 +1,8 @@
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   if (request.data) {
-    const { dataURL, detectList } = request.data;
+    const { dataURL, detectList, textList } = request.data;
     const objectList = document.getElementById('objectList');
+    const textInfoList = document.getElementById('textInfoList');
 
     const canvas = new Image();
     canvas.src = 'data:image/png;base64,' + dataURL;
@@ -38,8 +39,10 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 
         const croppedDataURL = croppedCanvas.toDataURL('image/png');
 
+        const textData = new FormData();
         textData.append('image', croppedDataURL);
         textData.append('text', selectedText);
+
         const formData = new FormData();
         formData.append('image', croppedDataURL);
 
@@ -84,6 +87,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
         document.body.removeChild(a);
       });
       objectList.appendChild(button);
+      textInfoListList.appendChild(button);
     });
   }
 });
