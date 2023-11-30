@@ -39,16 +39,12 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 
         const croppedDataURL = croppedCanvas.toDataURL('image/png');
 
-        const textData = new FormData();
-        textData.append('image', croppedDataURL);
-        textData.append('text', selectedText);
-
         const formData = new FormData();
         formData.append('image', croppedDataURL);
 
         fetch('http://127.0.0.1:5000/edit', {
           method: 'POST',
-          body: textData,
+          body: { dataURL, text, coordinates },
         })
           .then((response) => {
             return response.blob();
