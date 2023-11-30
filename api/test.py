@@ -11,7 +11,7 @@ image = Image.open(r'D:\opendoor.jpg')
 # 이미지에 텍스트 추가
 draw = ImageDraw.Draw(image)
 font_path = 'D:\\NanumSquareRoundR.ttf'
-font = ImageFont.truetype(font=font_path, size=24)
+font = ImageFont.truetype(font=font_path, size=textImgSize)
 draw.text((10, 10), text, fill=(255, 255, 255), font=font)
 
 # 덮어씌울 부분 잘라내기
