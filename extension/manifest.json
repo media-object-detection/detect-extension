@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Image Edit System",
   "version": "1.0",
-  "description": "Detect items in the video and inform them of the sales site",
+  "description": "Edit a photo by detecting text from a photo or return product information by detecting objects",
   "permissions": [
     "activeTab",
     "storage",
