@@ -74,7 +74,7 @@ function CaptureItem() {
         .then((data) => {
           if (data.responses && data.responses[0]) {
             const detectList = data.responses[0].localizedObjectAnnotations;
-            const textList = data.response[0].textAnnotations;
+            const textList = data.responses[0].textAnnotations;
 
             // popup2로 데이터를 전송
             chrome.runtime.sendMessage(
