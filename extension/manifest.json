@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "Object Search",
+  "version": "1.0",
+  "description": "Detect items in the video and inform them of the sales site",
+  "permissions": ["activeTab", "storage", "scripting", "downloads", "windows"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "js": ["page.js"],
+      "matches": ["https://www.youtube.com/*"],
+      "run_at": "document_end"
+    }
+  ],
+  "action": {
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
